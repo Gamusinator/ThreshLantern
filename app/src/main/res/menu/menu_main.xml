@@ -3,8 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="gmustudios.threshlantern.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_skin1"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/Skin1"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_skin2"
+        android:orderInCategory="100"
+        android:title="@string/Skin2"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_skin3"
+        android:orderInCategory="100"
+        android:title="@string/Skin3"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_skin4"
+        android:orderInCategory="100"
+        android:title="@string/Skin4"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_skin5"
+        android:orderInCategory="100"
+        android:title="@string/Skin5"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_skin6"
+        android:orderInCategory="100"
+        android:title="@string/Skin6"
+        app:showAsAction="never" />
+
 </menu>

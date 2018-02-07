@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">ThreshLantern</string>
+    <string name="app_name">Thresh Lantern</string>
     <string name="action_settings">Settings</string>
+    <string name="banner_ad_unit_id">ca-app-pub-6311459401782434/2874079546</string>
+    <string name="Skin1">Skin1</string>
+    <string name="Skin2">Skin2</string>
+    <string name="Skin3">Skin3</string>
+    <string name="Skin4">Skin4</string>
+    <string name="Skin5">Skin5</string>
+    <string name="Skin6">Skin6</string>
 </resources>
