@@ -13,11 +13,14 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton boto;
     CoordinatorLayout principal;
-    boolean sk1,sk2,sk3,sk4,sk5,sk6;
+    boolean sk1,sk2,sk3,sk4,sk5,sk6, flash;
 
 
     @Override
@@ -27,17 +30,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Publicidad!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        //Publicidad!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        sk1=true;
+        sk2=false;
+        sk3=false;
+        sk4=false;
+        sk5=false;
+        sk6=false;
+        flash=false;
+
         //Inicialitzacions
         boto = findViewById(R.id.imageButton);
         principal = findViewById(R.id.mainlayout);
 
 
-        //Iniciem amb skin1 (s'ha d'iniciar amb un fons negre
-        //principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
+        //Iniciem amb fons negre i botó apagat
+        principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+        boto.setImageResource(R.mipmap.sk0);
+
 
         boto = findViewById(R.id.imageButton);
         boto.setOnClickListener(this);
 
+        //botó de compartir
         FloatingActionButton share = (FloatingActionButton) findViewById(R.id.share);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,16 +69,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View view) {
+        //canviem el boleà segons si tenim el flash engegat o apagat
+        if (flash){
+            flash = false;
+        }else {
+            flash = true;
+        }
         //switch per posar diferents skins
         if (sk1) {
             //al encendre la llum posem el gradient
-            principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
+            if (!flash){
+                boto.setImageResource(R.mipmap.sk0);
+                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+            }else{
+                boto.setImageResource(R.mipmap.sk1);
+                principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
+            }
             //encenem el flash
                     /*codi per encendre flash*/
         }else if (sk2){
+            //al encendre la llum posem el gradient
+            if (!flash){
+                boto.setImageResource(R.mipmap.sk0);
+                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+            }else{
+                boto.setImageResource(R.mipmap.sk2);
+                principal.setBackgroundResource(R.drawable.skin2_gradient_selector);
+            }
+            //encenem el flash
+                    /*codi per encendre flash*/
         }else if (sk3){
             //al encendre la llum posem el gradient
-            principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
+            if (!flash){
+                boto.setImageResource(R.mipmap.sk0);
+                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+            }else{
+                boto.setImageResource(R.mipmap.sk3);
+                principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
+            }
             //encenem el flash
                     /*codi per encendre flash*/
         }else if (sk4){
@@ -83,31 +131,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_skin1) {
-            Toast.makeText(this, "Skin1", Toast.LENGTH_SHORT).show();
             sk1=true;
             sk2=false;
             sk3=false;
             sk4=false;
             sk5=false;
             sk6=false;
+            if (!flash){
+                boto.setImageResource(R.mipmap.sk0);
+                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+            }else{
+                boto.setImageResource(R.mipmap.sk1);
+                principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
+            }
             return true;
         }else if (id == R.id.action_skin2){
-            Toast.makeText(this, "Skin2", Toast.LENGTH_SHORT).show();
             sk2=true;
             sk1=false;
             sk3=false;
             sk4=false;
             sk5=false;
             sk6=false;
+            if (!flash){
+                boto.setImageResource(R.mipmap.sk0);
+                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+            }else{
+                boto.setImageResource(R.mipmap.sk2);
+                principal.setBackgroundResource(R.drawable.skin2_gradient_selector);
+            }
             return true;
         }else if (id == R.id.action_skin3){
-            Toast.makeText(this, "Skin3", Toast.LENGTH_SHORT).show();
             sk3=true;
             sk1=false;
             sk2=false;
             sk4=false;
             sk5=false;
             sk6=false;
+            if (!flash){
+                boto.setImageResource(R.mipmap.sk0);
+                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+            }else{
+                boto.setImageResource(R.mipmap.sk3);
+                principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
+            }
             return true;
         }else if (id == R.id.action_skin4){
             Toast.makeText(this, "Skin4", Toast.LENGTH_SHORT).show();
@@ -137,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sk5=false;
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
