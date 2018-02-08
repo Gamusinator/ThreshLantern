@@ -110,8 +110,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //encenem el flash
                     /*codi per encendre flash*/
         }else if (sk4){
+            Toast.makeText(this, "Skin444", Toast.LENGTH_SHORT).show();
         }else if (sk5){
+            Toast.makeText(this, "Skin555", Toast.LENGTH_SHORT).show();
         }else if (sk6){
+            Toast.makeText(this, "Skin666", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -129,79 +132,81 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_skin1) {
-            sk1=true;
-            sk2=false;
-            sk3=false;
-            sk4=false;
-            sk5=false;
-            sk6=false;
-            if (!flash){
-                boto.setImageResource(R.mipmap.sk0);
-                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
-            }else{
-                boto.setImageResource(R.mipmap.sk1);
-                principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
-            }
-            return true;
-        }else if (id == R.id.action_skin2){
-            sk2=true;
-            sk1=false;
-            sk3=false;
-            sk4=false;
-            sk5=false;
-            sk6=false;
-            if (!flash){
-                boto.setImageResource(R.mipmap.sk0);
-                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
-            }else{
-                boto.setImageResource(R.mipmap.sk2);
-                principal.setBackgroundResource(R.drawable.skin2_gradient_selector);
-            }
-            return true;
-        }else if (id == R.id.action_skin3){
-            sk3=true;
-            sk1=false;
-            sk2=false;
-            sk4=false;
-            sk5=false;
-            sk6=false;
-            if (!flash){
-                boto.setImageResource(R.mipmap.sk0);
-                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
-            }else{
-                boto.setImageResource(R.mipmap.sk3);
-                principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
-            }
-            return true;
-        }else if (id == R.id.action_skin4){
-            Toast.makeText(this, "Skin4", Toast.LENGTH_SHORT).show();
-            sk4=true;
-            sk1=false;
-            sk2=false;
-            sk3=false;
-            sk5=false;
-            sk6=false;
-            return true;
-        }else if (id == R.id.action_skin5){
-            Toast.makeText(this, "Skin5", Toast.LENGTH_SHORT).show();
-            sk5=true;
-            sk1=false;
-            sk2=false;
-            sk3=false;
-            sk4=false;
-            sk6=false;
-            return true;
-        }else if (id == R.id.action_skin6){
-            Toast.makeText(this, "Skin6", Toast.LENGTH_SHORT).show();
-            sk6=true;
-            sk1=false;
-            sk2=false;
-            sk3=false;
-            sk4=false;
-            sk5=false;
-            return true;
+        switch (id){
+            case R.id.action_skin1:
+                sk1=true;
+                sk2=false;
+                sk3=false;
+                sk4=false;
+                sk5=false;
+                sk6=false;
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk1);
+                    principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
+                }
+                break;
+            case R.id.action_skin2:
+                sk2=true;
+                sk1=false;
+                sk3=false;
+                sk4=false;
+                sk5=false;
+                sk6=false;
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk2);
+                    principal.setBackgroundResource(R.drawable.skin2_gradient_selector);
+                }
+                break;
+            case R.id.action_skin3:
+                sk3=true;
+                sk1=false;
+                sk2=false;
+                sk4=false;
+                sk5=false;
+                sk6=false;
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk3);
+                    principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
+                }
+                break;
+            case R.id.action_skin4:
+                Toast.makeText(this, "Skin4", Toast.LENGTH_SHORT).show();
+                sk4=true;
+                sk1=false;
+                sk2=false;
+                sk3=false;
+                sk5=false;
+                sk6=false;
+                break;
+            case R.id.action_skin5:
+                Toast.makeText(this, "Skin5", Toast.LENGTH_SHORT).show();
+                sk5=true;
+                sk1=false;
+                sk2=false;
+                sk3=false;
+                sk4=false;
+                sk6=false;
+                break;
+            case R.id.action_skin6:
+                Toast.makeText(this, "Skin6", Toast.LENGTH_SHORT).show();
+                sk6=true;
+                sk1=false;
+                sk2=false;
+                sk3=false;
+                sk4=false;
+                sk5=false;
+                break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
