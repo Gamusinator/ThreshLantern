@@ -1,18 +1,21 @@
 package gmustudios.threshlantern;
 
-import android.graphics.drawable.GradientDrawable;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -20,7 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton boto;
     CoordinatorLayout principal;
-    boolean sk1,sk2,sk3,sk4,sk5,sk6, flash;
+    boolean flash;
+    int seleccionat;
+    static Camera camera;
+    Camera.Parameters parameters;
 
 
     @Override
@@ -36,13 +42,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAdView.loadAd(adRequest);
         //Publicidad!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        sk1=true;
-        sk2=false;
-        sk3=false;
-        sk4=false;
-        sk5=false;
-        sk6=false;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,}, 1000);
+        }
+
         flash=false;
+        seleccionat = 1;
 
         //Inicialitzacions
         boto = findViewById(R.id.imageButton);
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Iniciem amb fons negre i botó apagat
         principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
-        boto.setImageResource(R.mipmap.sk0);
+        boto.setImageResource(R.mipmap.sk0_1);
 
 
         boto = findViewById(R.id.imageButton);
@@ -72,49 +77,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //canviem el boleà segons si tenim el flash engegat o apagat
         if (flash){
             flash = false;
+            processOffClick();
         }else {
             flash = true;
+            processOnClick();
         }
         //switch per posar diferents skins
-        if (sk1) {
-            //al encendre la llum posem el gradient
-            if (!flash){
-                boto.setImageResource(R.mipmap.sk0);
-                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
-            }else{
-                boto.setImageResource(R.mipmap.sk1);
-                principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
-            }
-            //encenem el flash
-                    /*codi per encendre flash*/
-        }else if (sk2){
-            //al encendre la llum posem el gradient
-            if (!flash){
-                boto.setImageResource(R.mipmap.sk0);
-                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
-            }else{
-                boto.setImageResource(R.mipmap.sk2);
-                principal.setBackgroundResource(R.drawable.skin2_gradient_selector);
-            }
-            //encenem el flash
-                    /*codi per encendre flash*/
-        }else if (sk3){
-            //al encendre la llum posem el gradient
-            if (!flash){
-                boto.setImageResource(R.mipmap.sk0);
-                principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
-            }else{
-                boto.setImageResource(R.mipmap.sk3);
-                principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
-            }
-            //encenem el flash
-                    /*codi per encendre flash*/
-        }else if (sk4){
-            Toast.makeText(this, "Skin444", Toast.LENGTH_SHORT).show();
-        }else if (sk5){
-            Toast.makeText(this, "Skin555", Toast.LENGTH_SHORT).show();
-        }else if (sk6){
-            Toast.makeText(this, "Skin666", Toast.LENGTH_SHORT).show();
+        switch (seleccionat){
+            case 1:
+                //al encendre la llum posem el gradient
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0_1);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk1);
+                    principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
+                }
+                //encenem el flash
+                        /*codi per encendre flash*/
+                break;
+            case 2:
+                //al encendre la llum posem el gradient
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0_2);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk2);
+                    principal.setBackgroundResource(R.drawable.skin2_gradient_selector);
+                }
+                //encenem el flash
+                        /*codi per encendre flash*/
+                break;
+            case 3:
+                //al encendre la llum posem el gradient
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0_3);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk3);
+                    principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
+                }
+                //encenem el flash
+                        /*codi per encendre flash*/
+                        break;
+            case 4:
+                Toast.makeText(this, "Skin444", Toast.LENGTH_SHORT).show();
+                break;
+            case 5:
+                Toast.makeText(this, "Skin555", Toast.LENGTH_SHORT).show();
+                break;
+            case 6:
+                //al encendre la llum posem el gradient
+                boto.setImageResource(R.mipmap.sk6);
+                if (!flash){
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    principal.setBackgroundResource(R.drawable.skin6_gradient_selector);
+                }
+                //encenem el flash
+                        /*codi per encendre flash*/
+                break;
+            default:
+                break;
         }
     }
 
@@ -134,14 +158,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (id){
             case R.id.action_skin1:
-                sk1=true;
-                sk2=false;
-                sk3=false;
-                sk4=false;
-                sk5=false;
-                sk6=false;
+                seleccionat = 1;
                 if (!flash){
-                    boto.setImageResource(R.mipmap.sk0);
+                    boto.setImageResource(R.mipmap.sk0_1);
                     principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
                 }else{
                     boto.setImageResource(R.mipmap.sk1);
@@ -149,14 +168,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.action_skin2:
-                sk2=true;
-                sk1=false;
-                sk3=false;
-                sk4=false;
-                sk5=false;
-                sk6=false;
+                seleccionat = 2;
                 if (!flash){
-                    boto.setImageResource(R.mipmap.sk0);
+                    boto.setImageResource(R.mipmap.sk0_2);
                     principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
                 }else{
                     boto.setImageResource(R.mipmap.sk2);
@@ -164,14 +178,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.action_skin3:
-                sk3=true;
-                sk1=false;
-                sk2=false;
-                sk4=false;
-                sk5=false;
-                sk6=false;
+                seleccionat = 3;
                 if (!flash){
-                    boto.setImageResource(R.mipmap.sk0);
+                    boto.setImageResource(R.mipmap.sk0_3);
                     principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
                 }else{
                     boto.setImageResource(R.mipmap.sk3);
@@ -179,36 +188,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.action_skin4:
+                seleccionat = 4;
                 Toast.makeText(this, "Skin4", Toast.LENGTH_SHORT).show();
-                sk4=true;
-                sk1=false;
-                sk2=false;
-                sk3=false;
-                sk5=false;
-                sk6=false;
                 break;
             case R.id.action_skin5:
+                seleccionat = 5;
                 Toast.makeText(this, "Skin5", Toast.LENGTH_SHORT).show();
-                sk5=true;
-                sk1=false;
-                sk2=false;
-                sk3=false;
-                sk4=false;
-                sk6=false;
                 break;
             case R.id.action_skin6:
-                Toast.makeText(this, "Skin6", Toast.LENGTH_SHORT).show();
-                sk6=true;
-                sk1=false;
-                sk2=false;
-                sk3=false;
-                sk4=false;
-                sk5=false;
+                seleccionat = 6;
+                boto.setImageResource(R.mipmap.sk6);
+                if (!flash){
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    principal.setBackgroundResource(R.drawable.skin6_gradient_selector);
+                }
                 break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(camera != null){
+            camera.release();
+            camera = null;
+        }
+    }
+
+    protected void onResume(){
+        super.onResume();
+    }
+
+    private void processOnClick(){
+        try{
+            camera = Camera.open();
+            Camera.Parameters parameters = camera.getParameters();
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            camera.setParameters(parameters);
+            camera.startPreview();
+        } catch(Exception e) {
+            Log.e("Error", ""+e);
+        }
+    }
+
+    private void processOffClick(){
+        try{
+            camera.stopPreview();
+            camera.release();
+            camera = null;
+        } catch(Exception e) {
+            Log.e("Error", ""+e);
+        }
     }
 
 }
