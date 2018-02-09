@@ -91,8 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     boto.setImageResource(R.mipmap.sk1);
                     principal.setBackgroundResource(R.drawable.skin1_gradient_selector);
                 }
-                //encenem el flash
-                        /*codi per encendre flash*/
                 break;
             case 2:
                 //al encendre la llum posem el gradient
@@ -103,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     boto.setImageResource(R.mipmap.sk2);
                     principal.setBackgroundResource(R.drawable.skin2_gradient_selector);
                 }
-                //encenem el flash
-                        /*codi per encendre flash*/
                 break;
             case 3:
                 //al encendre la llum posem el gradient
@@ -115,14 +111,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     boto.setImageResource(R.mipmap.sk3);
                     principal.setBackgroundResource(R.drawable.skin3_gradient_selector);
                 }
-                //encenem el flash
-                        /*codi per encendre flash*/
                         break;
             case 4:
-                Toast.makeText(this, "Skin444", Toast.LENGTH_SHORT).show();
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0_3);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk4);
+                    principal.setBackgroundResource(R.drawable.skin4_gradient_selector);
+                }
                 break;
             case 5:
-                Toast.makeText(this, "Skin555", Toast.LENGTH_SHORT).show();
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0_3);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk5);
+                    principal.setBackgroundResource(R.drawable.skin5_gradient_selector);
+                }
                 break;
             case 6:
                 //al encendre la llum posem el gradient
@@ -132,8 +138,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     principal.setBackgroundResource(R.drawable.skin6_gradient_selector);
                 }
-                //encenem el flash
-                        /*codi per encendre flash*/
                 break;
             default:
                 break;
@@ -187,11 +191,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.action_skin4:
                 seleccionat = 4;
-                Toast.makeText(this, "Skin4", Toast.LENGTH_SHORT).show();
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0_3);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk4);
+                    principal.setBackgroundResource(R.drawable.skin4_gradient_selector);
+                }
                 break;
             case R.id.action_skin5:
                 seleccionat = 5;
-                Toast.makeText(this, "Skin5", Toast.LENGTH_SHORT).show();
+                if (!flash){
+                    boto.setImageResource(R.mipmap.sk0_3);
+                    principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
+                }else{
+                    boto.setImageResource(R.mipmap.sk5);
+                    principal.setBackgroundResource(R.drawable.skin5_gradient_selector);
+                }
                 break;
             case R.id.action_skin6:
                 seleccionat = 6;
