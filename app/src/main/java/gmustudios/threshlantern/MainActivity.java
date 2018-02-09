@@ -52,15 +52,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Inicialitzacions
         boto = findViewById(R.id.imageButton);
         principal = findViewById(R.id.mainlayout);
-
+        boto.setOnClickListener(this);
 
         //Iniciem amb fons negre i botó apagat
         principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
         boto.setImageResource(R.mipmap.sk0_1);
 
 
-        boto = findViewById(R.id.imageButton);
-        boto.setOnClickListener(this);
 
         //botó de compartir
         FloatingActionButton share = (FloatingActionButton) findViewById(R.id.share);
