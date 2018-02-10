@@ -1,12 +1,12 @@
 package gmustudios.threshlantern;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
-import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -65,8 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                CompartirAPP();
             }
         });
     }
@@ -114,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
             case 4:
                 if (!flash){
-                    boto.setImageResource(R.mipmap.sk0_3);
+                    boto.setImageResource(R.mipmap.sk0_4);
                     principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
                 }else{
                     boto.setImageResource(R.mipmap.sk4);
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 5:
                 if (!flash){
-                    boto.setImageResource(R.mipmap.sk0_3);
+                    boto.setImageResource(R.mipmap.sk0_5);
                     principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
                 }else{
                     boto.setImageResource(R.mipmap.sk5);
@@ -192,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.action_skin4:
                 seleccionat = 4;
                 if (!flash){
-                    boto.setImageResource(R.mipmap.sk0_3);
+                    boto.setImageResource(R.mipmap.sk0_4);
                     principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
                 }else{
                     boto.setImageResource(R.mipmap.sk4);
@@ -202,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.action_skin5:
                 seleccionat = 5;
                 if (!flash){
-                    boto.setImageResource(R.mipmap.sk0_3);
+                    boto.setImageResource(R.mipmap.sk0_5);
                     principal.setBackgroundResource(R.drawable.apagat_gradient_selector);
                 }else{
                     boto.setImageResource(R.mipmap.sk5);
@@ -256,6 +254,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             camera = null;
         } catch(Exception e) {
             Log.e("Error", ""+e);
+        }
+    }
+
+    public void CompartirAPP() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "The best Lantern of Runaterra. Download it here: -link-");
+        try {
+            startActivity(Intent.createChooser(intent, "Share using:"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            //do something else
         }
     }
 
