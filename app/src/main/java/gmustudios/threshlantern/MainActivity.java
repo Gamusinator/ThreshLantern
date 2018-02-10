@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void CompartirAPP() {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "The best Lantern of Runaterra. Download it here: -link-");
+        intent.putExtra(Intent.EXTRA_TEXT, "The best Lantern of Runaterra. Download it here: https://play.google.com/store/apps/details?id=gmustudios.threshlantern");
         try {
             startActivity(Intent.createChooser(intent, "Share using:"));
         } catch (android.content.ActivityNotFoundException ex) {
