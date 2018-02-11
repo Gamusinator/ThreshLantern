@@ -3,6 +3,7 @@ package gmustudios.threshlantern;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -238,6 +239,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void processOnClick(){
         try{
             camera = Camera.open();
+            camera.setPreviewTexture(new SurfaceTexture(0));
             Camera.Parameters parameters = camera.getParameters();
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(parameters);
